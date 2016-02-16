@@ -9,12 +9,16 @@
 import sys
 import math
 
+# Variables
 args = sys.argv
-steps = 3
 phi = ( 1 + math.sqrt(5) ) / 2
+
+# Program Options
+steps = 3
 rounder = 2
 
 def is_number ( s ) :
+    # Checks if argument is a number
     try:
         float(s)
         return True
@@ -30,12 +34,12 @@ def is_number ( s ) :
     return False
 
 def get_smaller_phi ( value ) :
+    # Find the nearest smaller golden value
     return float(value) / phi
 
 def get_larger_phi ( value ) :
-    bigger_list = float(value) * phi
-    # for
-    return bigger_list
+    # Find the nearest larger golden value
+    return float(value) * phi
 
 def find_golden ( value ) :
     if not is_number( value ):
@@ -43,7 +47,7 @@ def find_golden ( value ) :
     else:
         smaller = round ( get_smaller_phi ( value ), rounder )
         bigger = round ( get_larger_phi ( value ), rounder )
-        return ( str( bigger ) + " : " + str( value ) + " : " + str( smaller ) )
+        return ( "\n" + str( bigger ) + " : " + str( value ) + " : " + str( smaller ) + "\n\n" )
 
 def main () :
     # Make sure we've got the corrent input
@@ -53,7 +57,7 @@ def main () :
         # If the user provides no arguments, ask them for a number
         value = input("\nPlease enter a number: ")
         while not is_number( value ):
-            value = input("No, a number: ")
+            value = input("\nNo, a number: ")
             if is_number( value ):
                 break
         print ( find_golden( value ) )
