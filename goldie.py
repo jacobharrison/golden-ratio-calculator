@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3.5
 
 '''
-    Golden Ratio Calculator
+    Goldie, a golden ratio calculator
     Written by Jacob Harrison
     JH@JHarrison.co
 '''
@@ -16,6 +16,22 @@ phi = ( 1 + math.sqrt(5) ) / 2
 # Program Options
 steps = 3
 rounder = 2
+
+def stringify ( s, v, l ) :
+    # Formats the output into a readable string
+    result = "\n"
+    result += str ( round ( l, rounder ) ) + " : "
+    result += str ( v ) + " : "
+    result += str ( round ( s, rounder ) ) + "\n\n"
+    return result
+
+def get_smaller_phi ( value ) :
+    # Find the nearest smaller golden value
+    return float(value) / phi
+
+def get_larger_phi ( value ) :
+    # Find the nearest larger golden value
+    return float(value) * phi
 
 def is_number ( s ) :
     # Checks if argument is a number
@@ -33,21 +49,13 @@ def is_number ( s ) :
         pass
     return False
 
-def get_smaller_phi ( value ) :
-    # Find the nearest smaller golden value
-    return float(value) / phi
-
-def get_larger_phi ( value ) :
-    # Find the nearest larger golden value
-    return float(value) * phi
-
 def find_golden ( value ) :
     if not is_number( value ):
         return "\nSorry, %s, is not a number\n\n" % value
     else:
-        smaller = round ( get_smaller_phi ( value ), rounder )
-        bigger = round ( get_larger_phi ( value ), rounder )
-        return ( "\n" + str( bigger ) + " : " + str( value ) + " : " + str( smaller ) + "\n\n" )
+        smaller = get_smaller_phi ( value )
+        bigger = get_larger_phi ( value )
+        return ( stringify( smaller, value, bigger ) )
 
 def main () :
     # Make sure we've got the corrent input
