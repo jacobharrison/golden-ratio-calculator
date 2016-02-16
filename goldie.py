@@ -19,19 +19,55 @@ rounder = 2
 
 def stringify ( s, v, l ) :
     # Formats the output into a readable string
-    result = "\n"
-    result += str ( round ( l, rounder ) ) + " : "
-    result += str ( v ) + " : "
-    result += str ( round ( s, rounder ) ) + "\n\n"
+    result = "\n\n\033[93m\033[1mGolden Numbers\033[0m\033[0m"
+
+    for i, e in enumerate ( l, start=1 ) :
+        if i == 1:
+            result += "\n"
+            continue
+
+        step_up = round ( float ( l[i-1] ), rounder )
+        result += str ( step_up )
+
+        if len(s) != i :
+            result += ", "
+        else:
+            result +=", \033[93m\033[1m"
+
+    result += v
+
+    for i, e in enumerate ( s, start=1 ) :
+        if i == 1:
+            result += "\033[0m\033[0m, "
+            continue
+
+        step_down = round ( float ( s[i-1] ), rounder )
+        result += str ( step_down )
+
+        if len(s) != i :
+            result += ", "
+        else:
+            result += "\n\n"
+    # result += str ( round ( l, rounder ) ) + " : "
+    # result += str ( v ) + " : "
+    # result += str ( round ( s, rounder ) ) + "\n\n"
     return result
 
 def get_smaller_phi ( value ) :
     # Find the nearest smaller golden value
-    return float(value) / phi
+    smaller = [value]
+    for i in range(1, steps + 1):
+        smaller.append ( float ( smaller[i-1] ) / phi )
+
+    return smaller
 
 def get_larger_phi ( value ) :
     # Find the nearest larger golden value
-    return float(value) * phi
+    larger = [value]
+    for i in range( 1, steps + 1 ):
+        larger.append ( float ( larger[i-1] ) * phi )
+
+    return larger
 
 def is_number ( s ) :
     # Checks if argument is a number
