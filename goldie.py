@@ -18,18 +18,24 @@ steps = 3
 rounder = 2
 
 def stringify ( s, v, l ) :
-    # Formats the output into a readable string
-    result = "\n\n\033[93m\033[1mGolden Numbers\033[0m\033[0m"
 
-    for i, e in enumerate ( l, start=1 ) :
-        if i == 1:
-            result += "\n"
+    # Formats the output into a readable string
+    # YELLOW = '\033[93m'
+    # BOLD = '\033[1m'
+    # END = '\033[0m'
+
+    result = "\n\n\033[93m\033[1m" + "Golden Numbers" + "\033[0m\033[0m\n"
+
+    # Loops through the larger
+    for i, e in reversed ( list ( enumerate ( l ) ) ) :
+        if i == 0:
+            # result += "\n"
             continue
 
-        step_up = round ( float ( l[i-1] ), rounder )
+        step_up = round ( float ( l[i] ), rounder )
         result += str ( step_up )
 
-        if len(s) != i :
+        if i != 1 :
             result += ", "
         else:
             result +=", \033[93m\033[1m"
