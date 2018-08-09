@@ -100,7 +100,7 @@ def find_golden ( value ) :
         return ( stringify( smaller, value, bigger ) )
 
 def main () :
-    # Make sure we've got the corrent input
+    # Make sure we've got the correct input
     if len(args) >= 3 :
         print ( "\nI'm sorry, you've entered too many parameters\n\n" )
     elif len(args) <= 1:
